@@ -1,0 +1,22 @@
+{
+  "name": "pokket",
+  "version": "1.0.0",
+  "description": "Pokket is a comprehensive budget management application designed to help users track their expenses, manage their finances, and achieve their financial goals with ease. With intuitive features and insightful analytics, Pokket empowers users to make informed financial decisions and stay on top of their spending habits effortlessly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pokket-Budget-Management/Pokket.git"
+  },
+  "author": "Marvin Huynh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pokket-Budget-Management/Pokket/issues"
+  },
+  "homepage": "https://github.com/Pokket-Budget-Management/Pokket#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
