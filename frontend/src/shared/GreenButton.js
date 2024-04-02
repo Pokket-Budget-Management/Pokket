@@ -2,27 +2,18 @@
 
 import React from "react";
 import { Button } from "react-bootstrap";
+import "./GreenButton.css";
 
-const GreenButton = ({ children, ...props }) => (
-	<Button variant="primary" className="green-button" {...props}>
-		{children}
-	</Button>
-);
+class GreenButton extends React.Component {
+	render() {
+		const { children, ...props } = this.props;
 
-const greenButtonStyles = `
-  .green-button {
-    background-color: #7ED348;
-    border-width: 0;
-  }
+		return (
+			<Button variant="primary" className="green-button" {...props}>
+				{children}
+			</Button>
+		);
+	}
+}
 
-  .green-button:hover {
-    // background-opacity: 0.8;
-  }
-`;
-
-export default () => (
-	<>
-		<GreenButton>Continue</GreenButton>
-		<style>{greenButtonStyles}</style>
-	</>
-);
+export default GreenButton;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import GreenButton from "../../shared/GreenButton";
+import DisplayHeading from "../../shared/Text";
 
 const SignUpForm = () => {
 	const [form, setForm] = useState({
@@ -77,10 +78,10 @@ const SignUpForm = () => {
 	return (
 		<Container className="mt-5 form-container">
 			<Row className="justify-content-md-center">
-				<h1 className="text-center mb-4">
-					Get even more financial clarity
-					<br /> with a Pokket account
-				</h1>
+				<DisplayHeading
+					title="Get even more financial clarity"
+					subtitle="with a Pokket account"
+				/>
 				<Col md="6" className="form-border rounded-3 p-5">
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="formFirstName">
@@ -153,7 +154,14 @@ const SignUpForm = () => {
 							onChange={(e) => setTermsAccepted(e.target.checked)}
 						/>
 						<Row className="mt-3 m-auto">
-							<GreenButton className="">Continue</GreenButton>
+							<GreenButton type="submit" size="lg">
+								Continue
+							</GreenButton>
+						</Row>
+						<Row className="mt-3 m-auto">
+							<p className="text-muted text-center">
+								Already a member? <a href="/login">Log In</a>
+							</p>
 						</Row>
 					</Form>
 				</Col>
