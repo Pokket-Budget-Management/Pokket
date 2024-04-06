@@ -6,12 +6,10 @@ import {
 	NavLink,
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
-import Navigation from "./shared/Navigation";
 import "./App.css";
 
 const App = () => {
 	return (
-		// <SignUpForm />
 		<Router>
 			<Routes>
 				<Route path="/signup" element={<SignUpForm />} />
