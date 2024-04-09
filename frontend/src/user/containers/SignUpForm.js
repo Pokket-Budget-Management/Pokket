@@ -196,7 +196,7 @@ const SignUpForm = () => {
 						</Row>
 						<Row className="mt-3 m-auto">
 							<p className="text-muted text-center">
-								Already a member? <a href="/login">Log In</a>
+								Already a member? <a href="/signin">Log In</a>
 							</p>
 						</Row>
 					</Form>
