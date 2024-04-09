@@ -7,12 +7,14 @@ const SignUpForm = () => {
 	const [form, setForm] = useState({
 		firstName: "",
 		lastName: "",
+		email: "",
 		password: "",
 	});
 
 	const [errors, setErrors] = useState({
 		firstNameError: "",
 		lastNameError: "",
+		emailError: "",
 		passwordError: "",
 	});
 
@@ -43,6 +45,16 @@ const SignUpForm = () => {
 		return null;
 	};
 
+	const validateEmail = (email) => {
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+		if (!emailRegex.test(email)) {
+			return "Please enter a valid email address.";
+		}
+
+		return null;
+	};
+
 	const validateForm = () => {
 		if (form.firstName === "") {
 			setErrors({ ...errors, firstNameError: "First name is required." });
@@ -51,6 +63,12 @@ const SignUpForm = () => {
 
 		if (form.lastName === "") {
 			setErrors({ ...errors, lastNameError: "Last name is required." });
+			return false;
+		}
+
+		const emailError = validateEmail(form.email);
+		if (emailError) {
+			setErrors({ ...errors, emailError });
 			return false;
 		}
 
@@ -116,6 +134,24 @@ const SignUpForm = () => {
 							{errors.lastNameError && (
 								<Form.Text className="text-muted">
 									{errors.lastNameError}
+								</Form.Text>
+							)}
+						</Form.Group>
+
+						<Form.Group className="mb-3" controlId="formEmail">
+							<Form.Label>Email*</Form.Label>
+							<Form.Control
+								type="email"
+								placeholder="Enter email"
+								value={form.email}
+								onChange={(e) => {
+									setForm({ ...form, email: e.target.value });
+									setErrors({ ...errors, emailError: "" });
+								}}
+							/>
+							{errors.emailError && (
+								<Form.Text className="text-muted">
+									{errors.emailError}
 								</Form.Text>
 							)}
 						</Form.Group>
