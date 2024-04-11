@@ -1,0 +1,13 @@
+td > div > p {
+    margin: 0;
+    padding: 0;
+  }
+
+  table {
+    border: none;
+  }
+  
+  th,
+  td {
+    border: none;
+  }
