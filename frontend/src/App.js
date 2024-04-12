@@ -15,7 +15,10 @@ const App = () => {
 			<Routes>
 				<Route path="/transactions" element={<TransactionList />} />
 				<Route path="/signup" element={<SignUpForm />} />
-				<Route path="/transactions/enter" element={<SignUpForm />} />
+				<Route
+					path="/transactions/add"
+					element={<h1>Add New Transaction</h1>}
+				/>
 				<Route
 					path="/"
 					element={

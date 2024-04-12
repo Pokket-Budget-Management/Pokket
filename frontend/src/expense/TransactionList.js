@@ -6,8 +6,11 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { faPaypal, faVimeo } from "@fortawesome/free-brands-svg-icons";
 import GreenButton from "../shared/GreenButton";
 import DisplayHeading from "../shared/Text";
+import { useNavigate } from "react-router-dom";
 
 const TransactionList = () => {
+	const navigate = useNavigate();
+
 	const [pendingTransactions, setPendingTransactions] = useState([
 		{
 			date: "3/7/2024",
@@ -210,7 +213,9 @@ const TransactionList = () => {
 			</Container>
 			<Row className="mb-3">
 				<Col className="text-end">
-					<GreenButton size="lg">Add a Transaction</GreenButton>
+					<GreenButton onClick={() => navigate("/transactions/add")} size="lg">
+						Add a Transaction
+					</GreenButton>
 				</Col>
 			</Row>
 		</Container>
