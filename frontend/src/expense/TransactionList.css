@@ -3,11 +3,8 @@ td > div > p {
     padding: 0;
   }
 
-  table {
-    border: none;
-  }
   
   th,
   td {
-    border: none;
+    border: none !important;
   }
