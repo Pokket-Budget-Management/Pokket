@@ -6,6 +6,8 @@ import {
 	NavLink,
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
+import SignInForm from "./user/containers/SignInForm";
+import Navigation from "./shared/Navigation";
 import "./App.css";
 
 const App = () => {
@@ -13,6 +15,7 @@ const App = () => {
 		<Router>
 			<Routes>
 				<Route path="/signup" element={<SignUpForm />} />
+				<Route path="/signin" element={<SignInForm />} />
 				<Route
 					path="/"
 					element={
