@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
 import TransactionList from "./expense/TransactionList";
+import SignInForm from "./user/containers/SignInForm";
 import "./App.css";
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
 			<Routes>
 				<Route path="/transactions" element={<TransactionList />} />
 				<Route path="/signup" element={<SignUpForm />} />
+				<Route path="/signin" element={<SignInForm />} />
 				<Route
 					path="/transactions/add"
 					element={<h1>Add New Transaction</h1>}
