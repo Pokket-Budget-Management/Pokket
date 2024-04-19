@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
 import SignInForm from "./user/containers/SignInForm";
-import Navigation from "./shared/Navigation";
 import "./App.css";
 
 const App = () => {
