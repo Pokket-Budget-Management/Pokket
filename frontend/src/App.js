@@ -9,12 +9,14 @@ import SignUpForm from "./user/containers/SignUpForm";
 import TransactionList from "./expense/TransactionList";
 import SignInForm from "./user/containers/SignInForm";
 import "./App.css";
+import FinancialProgress from "./Financial/FinancialProgress";
 
 const App = () => {
 	return (
 		<Router>
 			<Routes>
 				<Route path="/transactions" element={<TransactionList />} />
+				<Route path="/Financial" element={<FinancialProgress />} />
 				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="/signin" element={<SignInForm />} />
 				<Route
