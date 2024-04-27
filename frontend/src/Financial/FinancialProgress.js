@@ -1,27 +1,28 @@
 import React from "react";
 import { Table, Row, Col, Container } from "react-bootstrap";
+import "./FinancialProgress.css";
 import GreenButton from "../shared/GreenButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChartLine } from "@fortawesome/free-solid-svg-icons"; // Importing an appropriate icon for financial progress
+import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import DisplayHeading from "../shared/Text";
 import { useNavigate } from "react-router-dom";
 
 const FinancialProgress = () => {
-    // Hardcoded values for financial progress
     const financialProgress = [
-        { category: "Savings", currentAmount: 1500, targetAmount: 2000 },
-        { category: "Investments", currentAmount: 2500, targetAmount: 3000 },
-        // Add more financial progress categories as needed
+        { category: "Groceries", currentAmount: 1500, targetAmount: 2000 },
+        { category: "Shopping", currentAmount: 2500, targetAmount: 3000 },
+        { category: "Entertainment", currentAmount: 300, targetAmount: 500 },
+        { category: "Subscriptions", currentAmount: 100, targetAmount: 150 },
+        { category: "Utilities", currentAmount: 1000, targetAmount: 1200 },
+        
     ];
-
     const navigate = useNavigate();
-
     return (
         <Container className="mt-5 form-container">
             <Row className="justify-content-md-center">
                 <DisplayHeading
                     title="Track your Financial Progress"
-                    subtitle="Monitor your savings, investments, and more"
+                    subtitle="Monitor your budgets"
                 />
             </Row>
             <Row className="mt-0 m-auto">
