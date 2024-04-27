@@ -7,14 +7,25 @@ import {
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
 import BudgetPlanner from "./budget/BudgetPlanner";
+import CreateTransaction from "./expense/CreateTransaction";
+import TransactionList from "./expense/TransactionList";
+import SignInForm from "./user/containers/SignInForm";
 import "./App.css";
 
 const App = () => {
 	return (
 		<Router>
 			<Routes>
+				<Route path="/transactions" element={<TransactionList />} />
+				<Route path="/create-transaction" element={<CreateTransaction />} />
 				<Route path="/signup" element={<SignUpForm />} />
+				<Route path="/signin" element={<SignInForm />} />
+				<Route
+					path="/transactions/add"
+					element={<h1>Add New Transaction</h1>}
+				/>
 				<Route path="/budget-planner" element={<BudgetPlanner />} />
+
 				<Route
 					path="/"
 					element={
