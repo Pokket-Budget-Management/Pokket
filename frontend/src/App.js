@@ -6,7 +6,7 @@ import {
 	NavLink,
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
-import CreateTransaction from "./user/containers/CreateTransaction";
+import CreateTransaction from "./expense/CreateTransaction";
 import TransactionList from "./expense/TransactionList";
 import SignInForm from "./user/containers/SignInForm";
 import "./App.css";

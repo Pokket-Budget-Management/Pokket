@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import GreenButton from "../../shared/GreenButton";
-import DisplayHeading from "../../shared/Text";
+import GreenButton from "../shared/GreenButton";
+import DisplayHeading from "../shared/Text";
 
 export default function CreateTransaction() {
     return (
