@@ -20,6 +20,7 @@ export default function CreateTransaction() {
             <Form.Group controlId="category">
               <Form.Label>Category</Form.Label>
               <Form.Control as="select">
+                <option disabled selected>Please select an option</option>
                 <option>Groceries</option>
                 <option>Shopping</option>
                 <option>Entertainment</option>
