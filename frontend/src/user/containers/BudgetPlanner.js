@@ -41,13 +41,13 @@ export default function BudgetPlanner() {
                                 <div className="ms-2">
                                     Groceries
                                     <div className="text-muted">
-                                        {/*Logic to get number of transactions*/}
+                                        6 Transactions
                                     </div>
                                 </div>
                             </td>
                             <td className="text-end">
                             {/* Logic to get data from database */}
-                            {/* Logic for little graph next to budget value */}
+                            $300
                             </td>
                         </tr>
                         <tr>
@@ -56,13 +56,13 @@ export default function BudgetPlanner() {
                                 <div className="ms-2">
                                     Shopping
                                     <div className="text-muted">
-                                        {/*Logic to get number of transactions*/}
+                                        6 Transactions
                                     </div>
                                 </div>
                             </td>
                             <td className="text-end">
                             {/* Logic to get data from database */}
-                            {/* Logic for little graph next to budget value */}
+                            $500
                             </td>
                         </tr>
                         <tr>
@@ -71,13 +71,13 @@ export default function BudgetPlanner() {
                                 <div className="ms-2">
                                     Entertainment
                                     <div className="text-muted">
-                                        {/*Logic to get number of transactions*/}
+                                        6 Transactions
                                     </div>
                                 </div>
                             </td>
                             <td className="text-end">
                             {/* Logic to get data from database */}
-                            {/* Logic for little graph next to budget value */}
+                            $200
                             </td>
                         </tr>
                         <tr>
@@ -86,13 +86,13 @@ export default function BudgetPlanner() {
                                 <div className="ms-2">
                                     Subscriptions
                                     <div className="text-muted">
-                                        {/*Logic to get number of transactions*/}
+                                        6 Transactions
                                     </div>
                                 </div>
                             </td>
                             <td className="text-end">
                             {/* Logic to get data from database */}
-                            {/* Logic for little graph next to budget value */}
+                            $100
                             </td>
                         </tr>
                         <tr>
@@ -101,13 +101,13 @@ export default function BudgetPlanner() {
                                 <div className="ms-2">
                                     Utilities
                                     <div className="text-muted">
-                                        {/*Logic to get number of transactions*/}
+                                        6 Transactions
                                     </div>
                                 </div>
                             </td>
                             <td className="text-end">
                             {/* Logic to get data from database */}
-                            {/* Logic for little graph next to budget value */}
+                            $100
                             </td>
                         </tr>
                     </tbody>
