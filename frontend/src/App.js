@@ -6,6 +6,7 @@ import {
 	NavLink,
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
+import CreateTransaction from "./expense/CreateTransaction";
 import TransactionList from "./expense/TransactionList";
 import SignInForm from "./user/containers/SignInForm";
 import "./App.css";
@@ -15,6 +16,7 @@ const App = () => {
 		<Router>
 			<Routes>
 				<Route path="/transactions" element={<TransactionList />} />
+				<Route path="/create-transaction" element={<CreateTransaction />} />
 				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="/signin" element={<SignInForm />} />
 				<Route
