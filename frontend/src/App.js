@@ -6,7 +6,7 @@ import {
 	NavLink,
 } from "react-router-dom";
 import SignUpForm from "./user/containers/SignUpForm";
-import BudgetPlanner from "./user/containers/BudgetPlanner";
+import BudgetPlanner from "./budget/BudgetPlanner";
 import "./App.css";
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
 						</h1>
 					}
 				/>
-				<Route path="/budget-planner" element = {<BudgetPlanner />} />
+				<Route path="/budget-planner" element={<BudgetPlanner />} />
 			</Routes>
 		</Router>
 	);
