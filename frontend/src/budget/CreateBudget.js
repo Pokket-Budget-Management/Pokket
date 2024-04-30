@@ -8,16 +8,14 @@ export default function CreateBudget() {
 		category: "",
 		amount: "",
 		description: "",
-		startDate: "",
-		endDate: "",
+		period: "",
 	});
 
 	const [errors, setErrors] = useState({
 		categoryError: "",
 		amountError: "",
 		descriptionError: "",
-		startDateError: "",
-		endDateError: "",
+		periodError: "",
 	});
 
 	const validateCategory = (category) => {
@@ -44,19 +42,9 @@ export default function CreateBudget() {
 		return null;
 	};
 
-	const validateStartDate = (startDate) => {
-		if (startDate === "") {
-			return "Start date is required.";
-		}
-		return null;
-	};
-
-	const validateEndDate = (endDate, startDate) => {
-		if (endDate === "") {
-			return "End date is required.";
-		}
-		if (new Date(endDate) <= new Date(startDate)) {
-			return "End date must be after start date.";
+	const validatePeriod = (period) => {
+		if (period === "") {
+			return "Period is required.";
 		}
 		return null;
 	};
@@ -79,15 +67,9 @@ export default function CreateBudget() {
 			return false;
 		}
 
-		const startDateError = validateStartDate(form.startDate);
-		if (startDateError) {
-			setErrors({ ...errors, startDateError });
-			return false;
-		}
-
-		const endDateError = validateEndDate(form.endDate);
-		if (endDateError) {
-			setErrors({ ...errors, endDateError });
+		const periodError = validatePeriod(form.period);
+		if (periodError) {
+			setErrors({ ...errors, periodError });
 			return false;
 		}
 
@@ -163,39 +145,26 @@ export default function CreateBudget() {
 								<div style={{ color: "red" }}>{errors.descriptionError}</div>
 							)}
 						</Form.Group>
-						<Form.Group controlId="startDate">
-							<Form.Label>Start Date</Form.Label>
-							<Form.Control
-								type="date"
-								placeholder="Select start date"
-								min="2010-01-01"
-								max="2030-12-31"
-								value={form.startDate}
-								onChange={(e) =>
-									setForm({ ...form, startDate: e.target.value }) &
-									setErrors({ ...errors, startDateError: "" })
-								}
-							/>
-							{errors.startDateError && (
-								<div style={{ color: "red" }}>{errors.startDateError}</div>
-							)}
-						</Form.Group>
 
-						<Form.Group controlId="endDate">
-							<Form.Label>End Date</Form.Label>
+						<Form.Group controlId="period">
+							<Form.Label>Period*</Form.Label>
 							<Form.Control
-								type="date"
-								placeholder="Select end date"
-								min="2010-01-31"
-								max="2031-01-31"
-								value={form.endDate}
+								as="select"
+								value={form.period}
 								onChange={(e) =>
-									setForm({ ...form, endDate: e.target.value }) &
-									setErrors({ ...errors, endDateError: "" })
+									setForm({ ...form, period: e.target.value }) &
+									setErrors({ ...errors, periodError: "" })
 								}
-							/>
-							{errors.startDateError && (
-								<div style={{ color: "red" }}>{errors.startDateError}</div>
+							>
+								<option disabled value="">
+									Please select an option
+								</option>
+								<option value="Biweekly">Biweekly</option>
+								<option value="Monthly">Monthly</option>
+								<option value="Semester">Semester</option>
+							</Form.Control>
+							{errors.periodError && (
+								<div style={{ color: "red" }}>{errors.periodError}</div>
 							)}
 						</Form.Group>
 					</Form>

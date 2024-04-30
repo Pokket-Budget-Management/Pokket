@@ -7,6 +7,7 @@ import {
 	BiRefresh,
 	BiHomeAlt,
 } from "react-icons/bi";
+import { NavLink } from "react-router-dom";
 import GreenButton from "../shared/GreenButton";
 import CurrentMonth from "../shared/CurrentMonth";
 import DisplayHeading from "../shared/Text";
@@ -25,9 +26,11 @@ export default function BudgetPlanner() {
 			<Row className="m-auto">
 				<Col md={6} />
 				<Col md={6} className="d-flex justify-content-end">
-					<GreenButton type="button" size="lg" /*to="/create-budget"*/>
-						Create a New Budget
-					</GreenButton>
+					<NavLink to="/create-budget" activeClassName="active">
+						<GreenButton type="button" size="lg">
+							Create a New Budget
+						</GreenButton>
+					</NavLink>
 				</Col>
 			</Row>
 			<Row className="m-auto">
