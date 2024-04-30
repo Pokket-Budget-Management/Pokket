@@ -35,6 +35,7 @@ const App = () => {
 						</h1>
 					}
 				/>
+				<Route path="/budget-planner" element={<BudgetPlanner />} />
 			</Routes>
 		</Router>
 	);
