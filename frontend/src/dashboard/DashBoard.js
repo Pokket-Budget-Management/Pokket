@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
+import ExportButton from "../shared/ExportButton";
 
 const Dashboard = () => {
 	const [user, setUser] = useState(null);
@@ -44,6 +45,7 @@ const Dashboard = () => {
 					</div>
 				)}
 			</h1>
+			<ExportButton buttonText={"Export Report"} />
 		</div>
 	);
 };
