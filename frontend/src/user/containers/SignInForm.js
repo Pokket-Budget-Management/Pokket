@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import GreenButton from "../../shared/GreenButton";
 import DisplayHeading from "../../shared/Text";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = () => {
+	const navigate = useNavigate();
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
@@ -32,6 +36,17 @@ const SignInForm = () => {
 		e.preventDefault();
 		if (validateForm()) {
 			// Your form submission logic here
+			signInWithEmailAndPassword(auth, form.email, form.password)
+				.then((userCredential) => {
+					// Signed in
+					var user = userCredential.user;
+					console.log(user.displayName);
+					navigate("/");
+				})
+				.catch((error) => {
+					var errorCode = error.code;
+					var errorMessage = error.message;
+				});
 			console.log("Form submitted:", form);
 		}
 	};

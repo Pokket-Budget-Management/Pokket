@@ -8,10 +8,6 @@ import { getAuth } from "firebase/auth";
 var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/firestore");
-// var firebaseui = require("firebaseui");
-
-// // Initialize the FirebaseUI Widget using Firebase.
-// var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
