@@ -12,6 +12,7 @@ import CreateTransaction from "./expense/CreateTransaction";
 import TransactionList from "./expense/TransactionList";
 import SignInForm from "./user/containers/SignInForm";
 import "./App.css";
+import Dashboard from "./dashboard/DashBoard";
 
 const App = () => {
 	return (
@@ -27,15 +28,7 @@ const App = () => {
 				/>
 				<Route path="/budget-planner" element={<BudgetPlanner />} />
 				<Route path="/create-budget" element={<CreateBudget />} />
-				<Route
-					path="/"
-					element={
-						<h1 className="text-center mb-4">
-							Welcome to Pokket. Please <NavLink to="/signup">sign up</NavLink>.
-						</h1>
-					}
-				/>
-				<Route path="/budget-planner" element={<BudgetPlanner />} />
+				<Route path="/" element={<Dashboard />} />
 			</Routes>
 		</Router>
 	);
