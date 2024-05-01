@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import GreenButton from "../../shared/GreenButton";
 import DisplayHeading from "../../shared/Text";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
+	const navigate = useNavigate();
+
 	const [form, setForm] = useState({
 		firstName: "",
 		lastName: "",
@@ -85,11 +90,35 @@ const SignUpForm = () => {
 		return true;
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (validateForm()) {
-			// Your form submission logic here
-			console.log("Form submitted:", form);
+			await createUserWithEmailAndPassword(auth, form.email, form.password)
+				.then((userCredential) => {
+					// Signed in
+					const user = userCredential.user;
+					// Update user's display name with first and last name
+					const firstName = form.firstName;
+					const lastName = form.lastName;
+					const displayName = `${firstName} ${lastName}`;
+					updateProfile(auth.currentUser, { displayName })
+						.then(() => {
+							console.log("Display name updated successfully");
+						})
+						.catch((error) => {
+							console.log("Error updating display name: ", error);
+						});
+
+					console.log(user);
+					navigate("/signin");
+					// ...
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					console.log(errorCode, errorMessage);
+					// ..
+				});
 		}
 	};
 
