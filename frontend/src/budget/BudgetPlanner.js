@@ -11,9 +11,12 @@ import { NavLink } from "react-router-dom";
 import GreenButton from "../shared/GreenButton";
 import CurrentMonth from "../shared/CurrentMonth";
 import DisplayHeading from "../shared/Text";
+import { useNavigate } from "react-router-dom";
 import "./BudgetPlanner.css";
 
 export default function BudgetPlanner() {
+	const navigate = useNavigate();
+
 	return (
 		<Container className="mt-5 form-container">
 			<Row className="justify-content-md-center">
@@ -26,11 +29,9 @@ export default function BudgetPlanner() {
 			<Row className="m-auto">
 				<Col md={6} />
 				<Col md={6} className="d-flex justify-content-end">
-					<NavLink to="/create-budget" activeClassName="active">
-						<GreenButton type="button" size="lg">
-							Create a New Budget
-						</GreenButton>
-					</NavLink>
+					<GreenButton onClick={() => navigate("/budget/add")} size="lg">
+						Create a New Budget
+					</GreenButton>
 				</Col>
 			</Row>
 			<Row className="m-auto">
