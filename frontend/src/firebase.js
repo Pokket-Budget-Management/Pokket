@@ -1,8 +1,17 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase-admin/app";
+import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+
+// Require Firebase and FirebaseUI modules
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/firestore");
+// var firebaseui = require("firebaseui");
+
+// // Initialize the FirebaseUI Widget using Firebase.
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -21,10 +30,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const { initializeApp } = require("firebase-admin/app");
+// const { initializeApp } = require("firebase-admin/app");
 const analytics = getAnalytics(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 // Initalize Firebase Authentication
 const auth = getAuth(app);
 export { auth };
+export default { app };
