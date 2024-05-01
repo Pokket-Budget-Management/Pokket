@@ -12,6 +12,7 @@ import CreateTransaction from "./expense/CreateTransaction";
 import TransactionList from "./expense/TransactionList";
 import SignInForm from "./user/containers/SignInForm";
 import "./App.css";
+import FinancialProgress from "./Financial/FinancialProgress";
 import Dashboard from "./dashboard/DashBoard";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
 		<Router>
 			<Routes>
 				<Route path="/transactions" element={<TransactionList />} />
+				<Route path="/Financial" element={<FinancialProgress />} />
 				<Route path="/create-transaction" element={<CreateTransaction />} />
 				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="/signin" element={<SignInForm />} />
