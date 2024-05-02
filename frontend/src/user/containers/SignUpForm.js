@@ -5,8 +5,6 @@ import DisplayHeading from "../../shared/Text";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { doc, collection, setDoc } from "firebase/firestore";
-import { db } from "../../firebase";
 
 const SignUpForm = () => {
 	const navigate = useNavigate();
@@ -95,37 +93,32 @@ const SignUpForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (validateForm()) {
-			try {
-				const userCredential = await createUserWithEmailAndPassword(
-					auth,
-					form.email,
-					form.password
-				);
-				const user = userCredential.user;
-				const firstName = form.firstName;
-				const lastName = form.lastName;
-				const displayName = `${firstName} ${lastName}`;
-				await updateProfile(user, { displayName });
-				console.log("Display name updated successfully");
+			await createUserWithEmailAndPassword(auth, form.email, form.password)
+				.then((userCredential) => {
+					// Signed in
+					const user = userCredential.user;
+					// Update user's display name with first and last name
+					const firstName = form.firstName;
+					const lastName = form.lastName;
+					const displayName = `${firstName} ${lastName}`;
+					updateProfile(auth.currentUser, { displayName })
+						.then(() => {
+							console.log("Display name updated successfully");
+						})
+						.catch((error) => {
+							console.log("Error updating display name: ", error);
+						});
 
-				// Create a new user document in Firestore
-				const userDocRef = doc(collection(db, "users"), user.uid);
-				await setDoc(userDocRef, {
-					uid: user.uid,
-					displayName,
-					email: user.email,
-					firstName,
-					lastName,
-					createdAt: new Date(),
+					console.log(user);
+					navigate("/signin");
+					// ...
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					console.log(errorCode, errorMessage);
+					// ..
 				});
-				console.log("User document created successfully");
-
-				navigate("/signin");
-			} catch (error) {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.log(errorCode, errorMessage);
-			}
 		}
 	};
 
