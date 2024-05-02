@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import GreenButton from "../shared/GreenButton";
 import DisplayHeading from "../shared/Text";
+import { auth, db } from "../firebase";
+import { getDoc, addDoc, collection, doc } from "firebase/firestore";
 
 export default function CreateBudget() {
 	const [form, setForm] = useState({
@@ -76,11 +78,22 @@ export default function CreateBudget() {
 		return true;
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (validateForm()) {
-			// Your form submission logic here
-			console.log("Form submitted:", form);
+			const userDocRef = await getDoc(doc(db, `users`, auth.currentUser.uid));
+			if (userDocRef.exists()) {
+				const budgetRef = collection(userDocRef.ref, `budgets`);
+				await addDoc(budgetRef, {
+					category: form.category,
+					amount: form.amount,
+					description: form.description,
+					period: form.period,
+				});
+				console.log("Budget added successfully!");
+			} else {
+				console.error("User document not found!");
+			}
 		}
 	};
 
@@ -89,9 +102,9 @@ export default function CreateBudget() {
 			<Row className="justify-content-md-center">
 				<DisplayHeading title="Create a New Budget" />
 				<Col md="6" className="form-border rounded-3 p-5">
-					<h2>Budget Details</h2>
+					<h2 className="mb-3">Budget Details</h2>
 					<Form onSubmit={handleSubmit}>
-						<Form.Group controlId="category">
+						<Form.Group className="mb-3" controlId="category">
 							<Form.Label>Category</Form.Label>
 							<Form.Control
 								as="select"
@@ -114,7 +127,7 @@ export default function CreateBudget() {
 								<div style={{ color: "red" }}>{errors.categoryError}</div>
 							)}
 						</Form.Group>
-						<Form.Group controlId="amount">
+						<Form.Group className="mb-3" controlId="amount">
 							<Form.Label>Amount</Form.Label>
 							<Form.Control
 								type="number"
@@ -129,7 +142,7 @@ export default function CreateBudget() {
 								<div style={{ color: "red" }}>{errors.amountError}</div>
 							)}
 						</Form.Group>
-						<Form.Group controlId="description">
+						<Form.Group className="mb-3" controlId="description">
 							<Form.Label>Description</Form.Label>
 							<Form.Control
 								as="textarea"
@@ -146,7 +159,7 @@ export default function CreateBudget() {
 							)}
 						</Form.Group>
 
-						<Form.Group controlId="period">
+						<Form.Group className="mb-3" controlId="period">
 							<Form.Label>Period*</Form.Label>
 							<Form.Control
 								as="select"
@@ -167,18 +180,14 @@ export default function CreateBudget() {
 								<div style={{ color: "red" }}>{errors.periodError}</div>
 							)}
 						</Form.Group>
+						<Row className="justify-content-md-center mt-3">
+							<Col md="6" className="text-center">
+								<GreenButton type="submit" size="lg">
+									Submit
+								</GreenButton>
+							</Col>
+						</Row>
 					</Form>
-				</Col>
-			</Row>
-			<Row className="justify-content-md-center mt-3">
-				<Col md="6" className="text-center">
-					<GreenButton type="submit" size="lg">
-						Submit
-					</GreenButton>
-					<h1> </h1>
-					<GreenButton type="submit" size="lg">
-						Cancel
-					</GreenButton>
 				</Col>
 			</Row>
 		</Container>
