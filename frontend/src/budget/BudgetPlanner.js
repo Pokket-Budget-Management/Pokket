@@ -7,12 +7,15 @@ import {
 	BiRefresh,
 	BiHomeAlt,
 } from "react-icons/bi";
-import { NavLink } from "react-router-dom";
 import GreenButton from "../shared/GreenButton";
 import CurrentMonth from "../shared/CurrentMonth";
+import GetBudgetData from "./GetBudgetData";
 import DisplayHeading from "../shared/Text";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore";
 import "./BudgetPlanner.css";
+import GetNumTransactions from "./getNumTransactions";
+import GetTransactionData from "./GetTransactionData";
 
 export default function BudgetPlanner() {
 	const navigate = useNavigate();
@@ -53,12 +56,13 @@ export default function BudgetPlanner() {
 									<BiBasket className="icon-pink" />
 									<div className="ms-2">
 										Groceries
-										<div className="text-muted">6 Transactions</div>
+										<div className="text-muted"><GetNumTransactions category="Groceries" /></div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									$300
+									<GetTransactionData category="Groceries"/>
+									<GetBudgetData category="Groceries"/>
 								</td>
 							</tr>
 							<tr>
@@ -66,12 +70,13 @@ export default function BudgetPlanner() {
 									<BiCartAlt className="icon-orange" />
 									<div className="ms-2">
 										Shopping
-										<div className="text-muted">6 Transactions</div>
+										<div className="text-muted"><GetNumTransactions category="Shopping" /></div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									$500
+									<GetTransactionData category="Shopping"/>
+									<GetBudgetData category="Shopping"/>
 								</td>
 							</tr>
 							<tr>
@@ -79,12 +84,13 @@ export default function BudgetPlanner() {
 									<BiCameraMovie className="icon-purple" />
 									<div className="ms-2">
 										Entertainment
-										<div className="text-muted">6 Transactions</div>
+										<div className="text-muted"><GetNumTransactions category="Entertainment" /></div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									$200
+									<GetTransactionData category="Entertainment"/>
+									<GetBudgetData category="Entertainment"/>
 								</td>
 							</tr>
 							<tr>
@@ -92,12 +98,13 @@ export default function BudgetPlanner() {
 									<BiRefresh className="icon-green" />
 									<div className="ms-2">
 										Subscriptions
-										<div className="text-muted">6 Transactions</div>
+										<div className="text-muted"><GetNumTransactions category="Subscriptions" /></div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									$100
+									<GetTransactionData category="Subscriptions"/>
+									<GetBudgetData category="Subscriptions"/>
 								</td>
 							</tr>
 							<tr>
@@ -105,12 +112,13 @@ export default function BudgetPlanner() {
 									<BiHomeAlt className="icon-yellow" />
 									<div className="ms-2">
 										Utilities
-										<div className="text-muted">6 Transactions</div>
+										<div className="text-muted"><GetNumTransactions category="Utilities" /></div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									$100
+									<GetTransactionData category="Utilities"/>
+									<GetBudgetData category="Utilities"/>
 								</td>
 							</tr>
 						</tbody>

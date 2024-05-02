@@ -34,6 +34,7 @@ const Dashboard = () => {
 					<a href="#" onClick={handleSignOut} className="ms-2">
 						Sign Out
 					</a>
+					
 				) : (
 					<div>
 						<a href="/signup" className="ms-2">
@@ -45,6 +46,9 @@ const Dashboard = () => {
 					</div>
 				)}
 			</h1>
+			<a href="/budget" className="ms-2">
+				budget
+			</a>
 			<ExportButton buttonText={"Export Report"} />
 		</div>
 	);
