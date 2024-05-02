@@ -34,6 +34,14 @@ export default function BudgetPlanner() {
 					</GreenButton>
 				</Col>
 			</Row>
+			<Budgets />
+		</Container>
+	);
+}
+
+const Budgets = () => {
+	return (
+		<>
 			<Row className="m-auto">
 				<Col md={6}>
 					<p className="text-left mb-0 font-size-lg">Monthly Budgets</p>
@@ -117,6 +125,7 @@ export default function BudgetPlanner() {
 					</Table>
 				</Col>
 			</Row>
-		</Container>
+		</>
 	);
-}
+};
+export { Budgets };

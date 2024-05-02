@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import ExportButton from "../shared/ExportButton";
+import DisplayHeading from "../shared/Text";
+import { Row, Col, Container } from "react-bootstrap";
+import { Budgets } from "../budget/BudgetPlanner";
 
 const Dashboard = () => {
 	const [user, setUser] = useState(null);
@@ -17,36 +20,31 @@ const Dashboard = () => {
 		return () => unsubscribe();
 	}, []);
 
-	const handleSignOut = async () => {
-		try {
-			await signOut(auth);
-			setUser(null);
-		} catch (error) {
-			console.error(error);
-		}
-	};
-
 	return (
-		<div>
-			<h1 className="text-center mb-4">
-				{user ? `Hello, ${user.displayName}!` : "Welcome to Pokket"}
-				{user ? (
-					<a href="#" onClick={handleSignOut} className="ms-2">
-						Sign Out
-					</a>
-				) : (
-					<div>
-						<a href="/signup" className="ms-2">
-							Sign Up
-						</a>
-						<a href="/signin" className="ms-2">
-							Sign In
-						</a>
-					</div>
-				)}
-			</h1>
-			<ExportButton buttonText={"Export Report"} />
-		</div>
+		<Container fluid>
+			{user ? (
+				<>
+					<Row>
+						<Col>
+							<DisplayHeading
+								subtitle={`Hello, ${user.displayName}!`}
+								isLeftAlignment={true}
+							></DisplayHeading>
+						</Col>
+					</Row>
+					<Row>
+						<Budgets />
+					</Row>
+					<Row>
+						<Col className="col-3 ms-auto text-end">
+							<ExportButton buttonText={"Export Report"} />
+						</Col>
+					</Row>
+				</>
+			) : (
+				<DisplayHeading subtitle={"Welcome to Pokket!"}></DisplayHeading>
+			)}
+		</Container>
 	);
 };
 

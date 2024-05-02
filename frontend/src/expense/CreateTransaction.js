@@ -74,37 +74,33 @@ export default function CreateTransaction() {
 			return false;
 		}
 
-		const dateError = validateDate(formData.date);
-		if (dateError) {
-			setErrors({ ...errors, dateError });
-			return false;
-		}
-
 		return true;
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!auth.currentUser) {
-			console.error("User is not authenticated");
-			navigate("/signin");
-			return;
+		if (validateForm()) {
+			if (!auth.currentUser) {
+				console.error("User is not authenticated");
+				navigate("/signin");
+				return;
+			}
+			const userDocRef = await getDoc(doc(db, "users", auth.currentUser.uid));
+			if (userDocRef.exists()) {
+				const transactionRef = collection(userDocRef.ref, `transactions`);
+				await addDoc(transactionRef, {
+					date: new Date(),
+					description: formData.description,
+					amount: formData.amount,
+					payee: formData.payee,
+					category: formData.category,
+				});
+				console.log("Transaction successfully added!");
+			} else {
+				console.error("Error adding transaction: ");
+			}
+			navigate("/transactions");
 		}
-		const userDocRef = await getDoc(doc(db, "users", auth.currentUser.uid));
-		if (userDocRef.exists()) {
-			const transactionRef = collection(userDocRef.ref, `transactions`);
-			await addDoc(transactionRef, {
-				date: new Date(),
-				description: formData.description,
-				amount: formData.amount,
-				payee: formData.payee,
-				category: formData.category,
-			});
-			console.log("Transaction successfully added!");
-		} else {
-			console.error("Error adding transaction: ");
-		}
-		navigate("/transactions");
 	};
 
 	const handleChange = (e) => {
@@ -132,7 +128,7 @@ export default function CreateTransaction() {
 								}
 							/>
 							{errors.payeeError && (
-								<div style={{ color: "red" }}>{errors.payeeError}</div>
+								<div className="text-danger">{errors.payeeError}</div>
 							)}
 						</Form.Group>
 						<Form.Group controlId="category">
@@ -156,7 +152,7 @@ export default function CreateTransaction() {
 								<option value="Subscriptions">Subscriptions</option>
 							</Form.Control>
 							{errors.categoryError && (
-								<div style={{ color: "red" }}>{errors.categoryError}</div>
+								<div className="text-danger">{errors.categoryError}</div>
 							)}
 						</Form.Group>
 						<Form.Group controlId="description">
@@ -173,7 +169,7 @@ export default function CreateTransaction() {
 								}
 							/>
 							{errors.descriptionErrorError && (
-								<div style={{ color: "red" }}>
+								<div className="text-danger">
 									{errors.descriptionErrorError}
 								</div>
 							)}
@@ -191,7 +187,7 @@ export default function CreateTransaction() {
 								}
 							/>
 							{errors.amountError && (
-								<div style={{ color: "red" }}>{errors.amountError}</div>
+								<div className="text-danger">{errors.amountError}</div>
 							)}
 						</Form.Group>
 						<hr />
