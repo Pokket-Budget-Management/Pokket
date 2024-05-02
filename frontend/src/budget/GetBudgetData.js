@@ -19,13 +19,13 @@ function GetBudgetData({ category }) {
 
 			try {
 				const querySnapshot = await getDocs(q);
-				let total = 0;
+				let budget = 0;
 				querySnapshot.forEach((doc) => {
 					const data = doc.data();
-					const budget = parseInt(data.amount) || 0;
-					total += budget;
+					budget = parseInt(data.amount) || 0;
+					// total += budget;
 				});
-				setBudgetTotal(total);
+				setBudgetTotal(budget);
 			} catch (error) {
 				console.error("Error getting budget data:", error);
 			}
