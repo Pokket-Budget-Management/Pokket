@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import ExportButton from "../shared/ExportButton";
 import DisplayHeading from "../shared/Text";
 import { Row, Col, Container } from "react-bootstrap";
-import Budgets from "../budget/BudgetPlanner";
+import { Budgets } from "../budget/BudgetPlanner";
 
 const Dashboard = () => {
 	const [user, setUser] = useState(null);

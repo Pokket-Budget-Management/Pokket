@@ -14,7 +14,7 @@ import DisplayHeading from "../shared/Text";
 import { useNavigate } from "react-router-dom";
 import "./BudgetPlanner.css";
 
-function BudgetPlanner() {
+export default function BudgetPlanner() {
 	const navigate = useNavigate();
 
 	return (
@@ -128,4 +128,4 @@ const Budgets = () => {
 		</>
 	);
 };
-export default Budgets;
+export { Budgets };
