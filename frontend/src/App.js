@@ -28,15 +28,11 @@ const App = () => {
 					<Routes>
 						<Route path="/transactions" element={<TransactionList />} />
 						<Route path="/Financial" element={<FinancialProgress />} />
-						<Route path="/create-transaction" element={<CreateTransaction />} />
+						<Route path="/transactions/add" element={<CreateTransaction />} />
 						<Route path="/signup" element={<SignUpForm />} />
 						<Route path="/signin" element={<SignInForm />} />
-						<Route
-							path="/transactions/add"
-							element={<h1>Add New Transaction</h1>}
-						/>
-						<Route path="/budget-planner" element={<BudgetPlanner />} />
-						<Route path="/create-budget" element={<CreateBudget />} />
+						<Route path="/budget" element={<BudgetPlanner />} />
+						<Route path="/budget/add" element={<CreateBudget />} />
 						<Route path="/" element={<Dashboard />} />
 					</Routes>
 				</Col>

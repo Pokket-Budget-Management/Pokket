@@ -52,8 +52,9 @@ export default function CreateBudget() {
 	};
 
 	const validateForm = () => {
+		const categoryError = validateCategory(form.category);
 		if (form.category === "") {
-			setErrors({ ...errors, categoryError: "Category is required." });
+			setErrors({ ...errors, categoryError });
 			return false;
 		}
 
@@ -105,7 +106,7 @@ export default function CreateBudget() {
 					<h2 className="mb-3">Budget Details</h2>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group className="mb-3" controlId="category">
-							<Form.Label>Category</Form.Label>
+							<Form.Label>Category*</Form.Label>
 							<Form.Control
 								as="select"
 								value={form.category}
@@ -128,7 +129,7 @@ export default function CreateBudget() {
 							)}
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="amount">
-							<Form.Label>Amount</Form.Label>
+							<Form.Label>Amount*</Form.Label>
 							<Form.Control
 								type="number"
 								placeholder="Enter amount"
@@ -143,7 +144,7 @@ export default function CreateBudget() {
 							)}
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="description">
-							<Form.Label>Description</Form.Label>
+							<Form.Label>Description*</Form.Label>
 							<Form.Control
 								as="textarea"
 								rows={3}
