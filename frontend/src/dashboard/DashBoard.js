@@ -46,9 +46,6 @@ const Dashboard = () => {
 					</div>
 				)}
 			</h1>
-			<a href="/budget" className="ms-2">
-				budget
-			</a>
 			<ExportButton buttonText={"Export Report"} />
 		</div>
 	);
