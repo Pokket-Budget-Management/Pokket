@@ -24,6 +24,65 @@ export default function CreateTransaction() {
 		periodError: "",
 	});
 
+	const validateCategory = (category) => {
+		if (category === "") {
+			return "Category is required.";
+		}
+		return null;
+	};
+
+	const validateAmount = (amount) => {
+		if (amount === "") {
+			return "Amount is required.";
+		}
+		if (isNaN(amount)) {
+			return "Amount must be a number.";
+		}
+		return null;
+	};
+
+	const validateDescription = (description) => {
+		if (description === "") {
+			return "Description is required.";
+		}
+		return null;
+	};
+
+	const validateDate = (date) => {
+		if (date === "") {
+			return "Date is required.";
+		}
+		return null;
+	};
+
+	const validateForm = () => {
+		const categoryError = validateCategory(formData.category);
+		if (formData.category === "") {
+			setErrors({ ...errors, categoryError });
+			return false;
+		}
+
+		const amountError = validateAmount(formData.amount);
+		if (amountError) {
+			setErrors({ ...errors, amountError });
+			return false;
+		}
+
+		const descriptionError = validateDescription(formData.description);
+		if (descriptionError) {
+			setErrors({ ...errors, descriptionError });
+			return false;
+		}
+
+		const dateError = validateDate(formData.date);
+		if (dateError) {
+			setErrors({ ...errors, dateError });
+			return false;
+		}
+
+		return true;
+	};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userDocRef = await getDoc(doc(db, 'users', auth.currentUser.uid));
