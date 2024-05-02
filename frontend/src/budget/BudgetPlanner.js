@@ -37,6 +37,14 @@ export default function BudgetPlanner() {
 					</GreenButton>
 				</Col>
 			</Row>
+			<Budgets />
+		</Container>
+	);
+}
+
+const Budgets = () => {
+	return (
+		<>
 			<Row className="m-auto">
 				<Col md={6}>
 					<p className="text-left mb-0 font-size-lg">Monthly Budgets</p>
@@ -56,13 +64,15 @@ export default function BudgetPlanner() {
 									<BiBasket className="icon-pink" />
 									<div className="ms-2">
 										Groceries
-										<div className="text-muted"><GetNumTransactions category="Groceries" /></div>
+										<div className="text-muted">
+											<GetNumTransactions category="Groceries" />
+										</div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									<GetTransactionData category="Groceries"/>
-									<GetBudgetData category="Groceries"/>
+									<GetTransactionData category="Groceries" />
+									<GetBudgetData category="Groceries" />
 								</td>
 							</tr>
 							<tr>
@@ -70,13 +80,15 @@ export default function BudgetPlanner() {
 									<BiCartAlt className="icon-orange" />
 									<div className="ms-2">
 										Shopping
-										<div className="text-muted"><GetNumTransactions category="Shopping" /></div>
+										<div className="text-muted">
+											<GetNumTransactions category="Shopping" />
+										</div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									<GetTransactionData category="Shopping"/>
-									<GetBudgetData category="Shopping"/>
+									<GetTransactionData category="Shopping" />
+									<GetBudgetData category="Shopping" />
 								</td>
 							</tr>
 							<tr>
@@ -84,13 +96,15 @@ export default function BudgetPlanner() {
 									<BiCameraMovie className="icon-purple" />
 									<div className="ms-2">
 										Entertainment
-										<div className="text-muted"><GetNumTransactions category="Entertainment" /></div>
+										<div className="text-muted">
+											<GetNumTransactions category="Entertainment" />
+										</div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									<GetTransactionData category="Entertainment"/>
-									<GetBudgetData category="Entertainment"/>
+									<GetTransactionData category="Entertainment" />
+									<GetBudgetData category="Entertainment" />
 								</td>
 							</tr>
 							<tr>
@@ -98,13 +112,15 @@ export default function BudgetPlanner() {
 									<BiRefresh className="icon-green" />
 									<div className="ms-2">
 										Subscriptions
-										<div className="text-muted"><GetNumTransactions category="Subscriptions" /></div>
+										<div className="text-muted">
+											<GetNumTransactions category="Subscriptions" />
+										</div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									<GetTransactionData category="Subscriptions"/>
-									<GetBudgetData category="Subscriptions"/>
+									<GetTransactionData category="Subscriptions" />
+									<GetBudgetData category="Subscriptions" />
 								</td>
 							</tr>
 							<tr>
@@ -112,19 +128,22 @@ export default function BudgetPlanner() {
 									<BiHomeAlt className="icon-yellow" />
 									<div className="ms-2">
 										Utilities
-										<div className="text-muted"><GetNumTransactions category="Utilities" /></div>
+										<div className="text-muted">
+											<GetNumTransactions category="Utilities" />
+										</div>
 									</div>
 								</td>
 								<td className="text-end">
 									{/* Logic to get data from database */}
-									<GetTransactionData category="Utilities"/>
-									<GetBudgetData category="Utilities"/>
+									<GetTransactionData category="Utilities" />
+									<GetBudgetData category="Utilities" />
 								</td>
 							</tr>
 						</tbody>
 					</Table>
 				</Col>
 			</Row>
-		</Container>
+		</>
 	);
-}
+};
+export { Budgets };
