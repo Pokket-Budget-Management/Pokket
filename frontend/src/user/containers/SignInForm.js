@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import GreenButton from "../../shared/GreenButton";
 import DisplayHeading from "../../shared/Text";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = () => {
+	const navigate = useNavigate();
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
@@ -13,7 +17,6 @@ const SignInForm = () => {
 		emailError: "",
 		passwordError: "",
 	});
-
 
 	const validateForm = () => {
 		if (form.email === "") {
@@ -33,6 +36,17 @@ const SignInForm = () => {
 		e.preventDefault();
 		if (validateForm()) {
 			// Your form submission logic here
+			signInWithEmailAndPassword(auth, form.email, form.password)
+				.then((userCredential) => {
+					// Signed in
+					var user = userCredential.user;
+					console.log(user.displayName);
+					navigate("/");
+				})
+				.catch((error) => {
+					var errorCode = error.code;
+					var errorMessage = error.message;
+				});
 			console.log("Form submitted:", form);
 		}
 	};
@@ -72,8 +86,7 @@ const SignInForm = () => {
 								value={form.password}
 								onChange={(e) => {
 									setForm({ ...form, password: e.target.value });
-									setErrors({...errors, passwordError: "" 
-									});
+									setErrors({ ...errors, passwordError: "" });
 								}}
 							/>
 							{errors.passwordError && (
@@ -83,21 +96,15 @@ const SignInForm = () => {
 							)}
 						</Form.Group>
 
-                        <Row className="mt-1 m-auto">
-							<p className="text-muted text-center">
-                            By signing up, you agree to our Terms of Service and that you have read our Privacy Policy
-							</p>
-						</Row>
-
 						<Row className="mt-1 m-auto">
 							<GreenButton type="submit" size="lg">
 								Continue
 							</GreenButton>
 						</Row>
 
-                        <Row className="mt-3 m-auto">
+						<Row className="mt-3 m-auto">
 							<p className="text-muted text-center">
-                                <a href="/forgotpassword">Forgot your pasword? </a>
+								<a href="/forgotpassword">Forgot your pasword? </a>
 							</p>
 						</Row>
 

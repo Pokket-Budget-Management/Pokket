@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import { Form, Container, Row, Col } from "react-bootstrap";
 import GreenButton from "../../shared/GreenButton";
 import DisplayHeading from "../../shared/Text";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { doc, collection, setDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const SignUpForm = () => {
+	const navigate = useNavigate();
+
 	const [form, setForm] = useState({
 		firstName: "",
 		lastName: "",
@@ -85,11 +92,40 @@ const SignUpForm = () => {
 		return true;
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (validateForm()) {
-			// Your form submission logic here
-			console.log("Form submitted:", form);
+			try {
+				const userCredential = await createUserWithEmailAndPassword(
+					auth,
+					form.email,
+					form.password
+				);
+				const user = userCredential.user;
+				const firstName = form.firstName;
+				const lastName = form.lastName;
+				const displayName = `${firstName} ${lastName}`;
+				await updateProfile(user, { displayName });
+				console.log("Display name updated successfully");
+
+				// Create a new user document in Firestore
+				const userDocRef = doc(collection(db, "users"), user.uid);
+				await setDoc(userDocRef, {
+					uid: user.uid,
+					displayName,
+					email: user.email,
+					firstName,
+					lastName,
+					createdAt: new Date(),
+				});
+				console.log("User document created successfully");
+
+				navigate("/signin");
+			} catch (error) {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				console.log(errorCode, errorMessage);
+			}
 		}
 	};
 

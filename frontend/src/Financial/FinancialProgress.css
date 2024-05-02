@@ -1,0 +1,48 @@
+
+.font-size-lg {
+    font-size: 2rem; /* Adjust the value as needed */
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-green {
+    font-size: 35px; /* Adjust the size as needed */
+    border-radius: 50%; /* Makes the icon circular */
+    padding: 5px; /* Adjust padding as needed */
+    background-color: #c9e4de; /* Background color for the circular area */
+}
+
+.icon-yellow {
+    font-size: 35px; /* Adjust the size as needed */
+    border-radius: 50%; /* Makes the icon circular */
+    padding: 5px; /* Adjust padding as needed */
+    background-color: #faedcb; /* Background color for the circular area */
+}
+
+.icon-pink {
+    font-size: 35px; /* Adjust the size as needed */
+    border-radius: 50%; /* Makes the icon circular */
+    padding: 5px; /* Adjust padding as needed */
+    background-color: #f2c6de; /* Background color for the circular area */
+}
+
+.icon-orange {
+    font-size: 35px; /* Adjust the size as needed */
+    border-radius: 50%; /* Makes the icon circular */
+    padding: 5px; /* Adjust padding as needed */
+    background-color: #f7d9c4; /* Background color for the circular area */
+}
+
+.icon-purple {
+    font-size: 35px; /* Adjust the size as needed */
+    border-radius: 50%; /* Makes the icon circular */
+    padding: 5px; /* Adjust padding as needed */
+    background-color: #dbcdf0; /* Background color for the circular area */
+}
+
+td > div {
+    display: inline;
+}

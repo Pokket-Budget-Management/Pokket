@@ -1,5 +1,5 @@
 import React from "react";
-import * as XLSX from "xlsx";
+import XLSX from "xlsx";
 import { Button } from "react-bootstrap";
 
 const ExportButton = ({ data, fileName, buttonText }) => {
