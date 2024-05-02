@@ -4,8 +4,11 @@ import GreenButton from "../shared/GreenButton";
 import DisplayHeading from "../shared/Text";
 import { auth, db } from "../firebase";
 import { getDoc, addDoc, collection, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateBudget() {
+	const navigate = useNavigate();
+
 	const [form, setForm] = useState({
 		category: "",
 		amount: "",
@@ -79,6 +82,7 @@ export default function CreateBudget() {
 					period: form.period,
 				});
 				console.log("Budget added successfully!");
+				navigate("/budget");
 			} else {
 				console.error("User document not found!");
 			}
