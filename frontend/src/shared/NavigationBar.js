@@ -1,4 +1,4 @@
-import { Navbar, Nav, NavLink } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";

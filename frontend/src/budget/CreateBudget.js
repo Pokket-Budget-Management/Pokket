@@ -37,13 +37,6 @@ export default function CreateBudget() {
 		return null;
 	};
 
-	const validateDescription = (description) => {
-		if (description === "") {
-			return "Description is required.";
-		}
-		return null;
-	};
-
 	const validatePeriod = (period) => {
 		if (period === "") {
 			return "Period is required.";
@@ -61,12 +54,6 @@ export default function CreateBudget() {
 		const amountError = validateAmount(form.amount);
 		if (amountError) {
 			setErrors({ ...errors, amountError });
-			return false;
-		}
-
-		const descriptionError = validateDescription(form.description);
-		if (descriptionError) {
-			setErrors({ ...errors, descriptionError });
 			return false;
 		}
 
@@ -125,7 +112,7 @@ export default function CreateBudget() {
 								<option value="Subscriptions">Subscriptions</option>
 							</Form.Control>
 							{errors.categoryError && (
-								<div style={{ color: "red" }}>{errors.categoryError}</div>
+								<div className="text-danger">{errors.categoryError}</div>
 							)}
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="amount">
@@ -140,24 +127,20 @@ export default function CreateBudget() {
 								}
 							/>
 							{errors.amountError && (
-								<div style={{ color: "red" }}>{errors.amountError}</div>
+								<div className="text-danger">{errors.amountError}</div>
 							)}
 						</Form.Group>
 						<Form.Group className="mb-3" controlId="description">
-							<Form.Label>Description*</Form.Label>
+							<Form.Label>Description</Form.Label>
 							<Form.Control
 								as="textarea"
 								rows={3}
 								placeholder="Enter description"
 								value={form.description}
 								onChange={(e) =>
-									setForm({ ...form, description: e.target.value }) &
-									setErrors({ ...errors, descriptionError: "" })
+									setForm({ ...form, description: e.target.value })
 								}
 							/>
-							{errors.descriptionError && (
-								<div style={{ color: "red" }}>{errors.descriptionError}</div>
-							)}
 						</Form.Group>
 
 						<Form.Group className="mb-3" controlId="period">
@@ -178,7 +161,7 @@ export default function CreateBudget() {
 								<option value="Semester">Semester</option>
 							</Form.Control>
 							{errors.periodError && (
-								<div style={{ color: "red" }}>{errors.periodError}</div>
+								<div className="text-danger">{errors.periodError}</div>
 							)}
 						</Form.Group>
 						<Row className="justify-content-md-center mt-3">
