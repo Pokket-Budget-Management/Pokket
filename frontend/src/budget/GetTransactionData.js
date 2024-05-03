@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import { Row, Alert } from "react-bootstrap";
 import { doc, getDocs, collection, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../auth/Auth";
 
-function GetTransactionData({ category }) {
+function GetTransactionData({ category, budgetAmount }) {
 	const [transactionTotal, setTransactionTotal] = useState(0);
 	const user = useAuth();
+	const alertThreshold = 0.8;
 
 	useEffect(() => {
 		if (!user) return;
@@ -36,7 +37,20 @@ function GetTransactionData({ category }) {
 
 	return (
 		<Row>
-			<p>${transactionTotal}</p>
+			<p>
+				${transactionTotal}
+				<br />
+				{`/$${budgetAmount}`}
+			</p>
+			{transactionTotal > alertThreshold * budgetAmount && (
+				<Alert variant="warning" className="mt-2 text-center">
+					Warning: Your transaction total is{" "}
+					{Math.round(
+						(parseFloat(transactionTotal) / parseFloat(budgetAmount)) * 100
+					)}
+					% of your budget amount.
+				</Alert>
+			)}
 		</Row>
 	);
 }
