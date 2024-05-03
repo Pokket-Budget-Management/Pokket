@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	NavLink,
+} from "react-router-dom";
+import SignUpForm from "./user/containers/SignUpForm";
+import BudgetPlanner from "./budget/BudgetPlanner";
+import CreateBudget from "./budget/CreateBudget";
+import CreateTransaction from "./expense/CreateTransaction";
+import TransactionList from "./expense/TransactionList";
+import SignInForm from "./user/containers/SignInForm";
+import "./App.css";
+import FinancialProgress from "./Financial/FinancialProgress";
+import Dashboard from "./dashboard/DashBoard";
+import NavBar from "./shared/NavigationBar";
+import { Row, Col, Container } from "react-bootstrap";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	return (
+		<Router>
+			<Row className="h-100">
+				<Col className="col-3">
+					<NavBar />
+				</Col>
+				<Col>
+					<Routes>
+						<Route path="/transactions" element={<TransactionList />} />
+						<Route path="/Financial" element={<FinancialProgress />} />
+						<Route path="/transactions/add" element={<CreateTransaction />} />
+						<Route path="/signup" element={<SignUpForm />} />
+						<Route path="/signin" element={<SignInForm />} />
+						<Route path="/budget" element={<BudgetPlanner />} />
+						<Route path="/budget/add" element={<CreateBudget />} />
+						<Route path="/" element={<Dashboard />} />
+					</Routes>
+				</Col>
+			</Row>
+		</Router>
+	);
+};
 
 export default App;
