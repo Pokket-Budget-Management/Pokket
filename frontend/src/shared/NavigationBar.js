@@ -15,6 +15,7 @@ import {
 	faCalendar,
 	faTh,
 } from "@fortawesome/free-solid-svg-icons";
+import logo from "./logo.png"; // import the logo
 
 const NavBar = () => {
 	const [user, setUser] = useState(null);
@@ -41,17 +42,18 @@ const NavBar = () => {
 
 	return (
 		<Navbar bg="light" expand="lg" className="flex-column h-100">
-			<Navbar.Brand>
-				Pokket
-				<Button variant="success" className="ms-2">
-					<FontAwesomeIcon icon={faUserCircle} />
-				</Button>
-				<Button variant="success" className="ms-2">
-					<FontAwesomeIcon icon={faBell} />
-				</Button>
+			<Navbar.Brand className="me-auto ms-5">
+				<img
+					src={logo}
+					width="47"
+					height="39"
+					className="d-inline-block align-top"
+					alt="Pokket Logo"
+				/>
 			</Navbar.Brand>
+
 			<Navbar.Toggle aria-controls="basic-navbar-nav" />
-			<Navbar.Collapse id="basic-navbar-nav">
+			<Navbar.Collapse id="basic-navbar-nav" className="me-auto ms-5">
 				<Nav className="me-auto flex-column">
 					<Nav.Link href="/">
 						<FontAwesomeIcon icon={faTh} /> Dashboard

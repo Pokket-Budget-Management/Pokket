@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Table, Form, Row, Col, Container } from "react-bootstrap";
 import "./TransactionList.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,9 +7,13 @@ import { faPaypal, faVimeo } from "@fortawesome/free-brands-svg-icons";
 import GreenButton from "../shared/GreenButton";
 import DisplayHeading from "../shared/Text";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/Auth";
+import { auth, db } from "../firebase.js";
+import { doc, getDocs, collection, query, where } from "firebase/firestore";
 
 const TransactionList = () => {
 	const navigate = useNavigate();
+	const user = useAuth();
 
 	const [pendingTransactions, setPendingTransactions] = useState([
 		{
@@ -33,19 +37,34 @@ const TransactionList = () => {
 	]);
 
 	const [transactions, setTransactions] = useState([
-		{
-			date: "3/7/2024",
-			description: "Walmart",
-			category: "Grocery",
-			amount: "5.99",
-		},
-		{
-			date: "3/7/2024",
-			description: "Spotify",
-			category: "Subscription",
-			amount: "123.95",
-		},
+		// {
+		// 	date: "3/7/2024",
+		// 	description: "Walmart",
+		// 	category: "Grocery",
+		// 	amount: "5.99",
+		// },
+		// {
+		// 	date: "3/7/2024",
+		// 	description: "Spotify",
+		// 	category: "Subscription",
+		// 	amount: "123.95",
+		// },
 	]);
+
+	useEffect(() => {
+		const fetchTransactions = async () => {
+			if (!user) return; // check if user is authenticated
+			const userDocRef = doc(db, "users", auth.currentUser.uid);
+			const transactionsRef = collection(userDocRef, "transactions");
+			const transactionsSnapshot = await getDocs(transactionsRef);
+			const transactionsData = transactionsSnapshot.docs.map((doc) =>
+				doc.data()
+			);
+			setTransactions(transactionsData);
+			console.log(transactionsData);
+		};
+		fetchTransactions();
+	}, [user]);
 
 	const mockVenmoTransaction = {
 		date: new Date().toLocaleDateString(),
