@@ -89,7 +89,7 @@ export default function CreateTransaction() {
 			if (userDocRef.exists()) {
 				const transactionRef = collection(userDocRef.ref, `transactions`);
 				await addDoc(transactionRef, {
-					date: new Date(),
+					date: new Date().toLocaleDateString(),
 					description: formData.description,
 					amount: formData.amount,
 					payee: formData.payee,
