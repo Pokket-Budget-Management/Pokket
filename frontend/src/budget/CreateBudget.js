@@ -160,7 +160,7 @@ export default function CreateBudget() {
 								<option disabled value="">
 									Please select an option
 								</option>
-								<option value="Biweekly">Biweekly</option>
+								{/* <option value="Biweekly">Biweekly</option> */}
 								<option value="Monthly">Monthly</option>
 								<option value="Semester">Semester</option>
 							</Form.Control>
