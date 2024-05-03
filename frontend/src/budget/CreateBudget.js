@@ -72,6 +72,13 @@ export default function CreateBudget() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (validateForm()) {
+			if (validateForm()) {
+				if (!auth.currentUser) {
+					console.error("User is not authenticated");
+					navigate("/signin");
+					return;
+				}
+			}
 			const userDocRef = await getDoc(doc(db, `users`, auth.currentUser.uid));
 			if (userDocRef.exists()) {
 				const budgetRef = collection(userDocRef.ref, `budgets`);
